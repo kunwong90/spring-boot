@@ -63,12 +63,12 @@ public class GirlController {
      */
     @GetMapping(value = "/girls/{id}")
     public Girl girlFindOne(@PathVariable("id") Integer id) {
-        return girlRepository.findOne(id);
+        return girlRepository.findById(id).get();
     }
 
     @DeleteMapping(value = "/girls/{id}")
     public void girlDelete(@PathVariable("id") Integer id) {
-        girlRepository.delete(id);
+        girlRepository.deleteById(id);
     }
 
     /**
