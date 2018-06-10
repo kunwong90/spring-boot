@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" src="/jquery-1.11.1.min.js"></script>
+    <style type="text/css">
+  #preview,
+  .img,
+  img {
+    width: 400px;
+    height: 400px;
+  }
+
+  #preview {
+    border: 1px solid #000;
+  }
+
+    </style>
+</head>
+
+<body>
+<form enctype="multipart/form-data" id="oForm">
+    <input type="file" name="file" id="file" onchange="readAsDataURL()" />
+    <input type="button" value="提交" onclick="doUpload()" />
+</form>
+<div>
+    <img alt="" id="img"/>
+</div>
+
+
+<script type="text/javascript">
+  function preview(file) {
+    var prevDiv = document.getElementById('preview');
+    if (file.files && file.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(evt) {
+        prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+      }
+      reader.readAsDataURL(file.files[0]);
+    } else {
+      prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+    }
+  }
+function doUpload() {
+   var formData = new FormData($( "#oForm" )[0]);
+   console.log(formData);
+   $.ajax({
+     url: 'upload',
+     type: 'POST',
+     data: formData,
+     async: false,
+     cache: false,
+     contentType: false,
+     processData: false,
+     success: function (returndata) {
+       console.log(returndata);
+     },
+     error: function (returndata) {
+       console.log(returndata);
+     }
+   });
+}
+function readAsDataURL(){
+  //检验是否为图像文件
+    var file = document.getElementById("file").files[0];
+    if(!/image\/\w+/.test(file.type)){
+      alert("看清楚，这个需要图片！");
+
+      return false;
+    }else{
+    var reader = new FileReader();
+    //将文件以Data URL形式读入页面
+    reader.readAsDataURL(file);
+    reader.onload=function(e){
+      var result=document.getElementById("img");
+      //显示文件
+      result.src= this.result ;
+    }
+  }
+}
+
+</script>
+</body>
+</html>
