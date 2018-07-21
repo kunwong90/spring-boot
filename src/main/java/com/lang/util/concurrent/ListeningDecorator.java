@@ -1,13 +1,13 @@
 package com.lang.util.concurrent;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author kun.wang
  */
-public class ListeningDecorator extends AbstractListeningExecutorService{
+public class ListeningDecorator implements ListeningExecutorService {
 
     private final ExecutorService delegate;
 
@@ -23,13 +23,8 @@ public class ListeningDecorator extends AbstractListeningExecutorService{
     }
 
     @Override
-    public void execute(Runnable command) {
-        delegate.execute(command);
-    }
-
-    @Override
     public void shutdown() {
-
+        this.delegate.shutdown();
     }
 
     @Override
@@ -50,5 +45,49 @@ public class ListeningDecorator extends AbstractListeningExecutorService{
     @Override
     public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
         return false;
+    }
+
+    @Override
+    public <T> ListenableFuture<T> submit(Callable<T> task) {
+        System.out.println("submit.....");
+        System.out.println(task);
+        Future<T> future = this.delegate.submit(task);
+        return new DefaultListenableFuture<>(future);
+    }
+
+    @Override
+    public <T> Future<T> submit(Runnable task, T result) {
+        return null;
+    }
+
+    @Override
+    public Future<?> submit(Runnable task) {
+        return null;
+    }
+
+    @Override
+    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
+        return null;
+    }
+
+    @Override
+    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws InterruptedException {
+        return null;
+    }
+
+    @Override
+    public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
+        return null;
+    }
+
+    @Override
+    public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+        return null;
+    }
+
+    @Override
+    public void execute(Runnable command) {
+        System.out.println("ListeningDecorator execute");
+        this.delegate.execute(command);
     }
 }
