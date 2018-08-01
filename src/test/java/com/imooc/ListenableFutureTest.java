@@ -11,12 +11,9 @@ public class ListenableFutureTest {
     public static void main(String[] args) throws InterruptedException {
         ListeningExecutorService pool = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10));
 
-        final ListenableFuture<String> future = pool.submit(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                Thread.sleep(1000 * 2);
-                return "Task done !";
-            }
+        final ListenableFuture<String> future = pool.submit(() -> {
+            Thread.sleep(1000 * 2);
+            return "Task done !";
         });
 
 

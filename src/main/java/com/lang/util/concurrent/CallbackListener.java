@@ -23,14 +23,12 @@ public class CallbackListener<V> implements Runnable {
         final V value;
         try {
             value = getDone(future);
+            callback.onSuccess(value);
         } catch (ExecutionException e) {
             callback.onFailure(e.getCause());
-            return;
         } catch (RuntimeException | Error e) {
             callback.onFailure(e);
-            return;
         }
-        callback.onSuccess(value);
     }
 
     public static <V> V getDone(Future<V> future) throws ExecutionException {

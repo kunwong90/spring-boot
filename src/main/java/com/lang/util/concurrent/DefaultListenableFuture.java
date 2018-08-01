@@ -7,7 +7,7 @@ public class DefaultListenableFuture<V> implements ListenableFuture<V> {
     private Future<V> future;
 
     public DefaultListenableFuture(Future<V> future) {
-        System.out.println(future);
+        System.out.println(getClass() + " " + future);
         this.future = future;
     }
 

@@ -7,7 +7,4 @@ public class MoreExecutors {
     public static ListeningExecutorService listeningDecorator(ExecutorService delegate) {
         return new ListeningDecorator(delegate);
     }
-
-
-
 }
