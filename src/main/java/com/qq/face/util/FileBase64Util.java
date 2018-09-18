@@ -7,7 +7,11 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.Base64;
 
-public class FileBase64Util {
+public final class FileBase64Util {
+
+    private FileBase64Util() {
+
+    }
 
     private final static Logger LOGGER = LoggerFactory.getLogger(FileBase64Util.class);
 
