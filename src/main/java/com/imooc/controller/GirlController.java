@@ -1,6 +1,5 @@
 package com.imooc.controller;
 
-import com.imooc.aspect.HttpAspect;
 import com.imooc.domain.Girl;
 import com.imooc.domain.Result;
 import com.imooc.reposiitory.GirlRepository;
