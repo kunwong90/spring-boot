@@ -17,7 +17,7 @@ public class GirlService {
     @Autowired
     private GirlRepository girlRepository;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void insertTwo() {
         Girl girlA = new Girl();
         girlA.setCupSize("A");
@@ -33,12 +33,6 @@ public class GirlService {
     }
 
     public void getAge(Integer id) throws Exception {
-        /**
-         * spring boot版本从1.4.2.RELEASE升级到2.0.0.RELEASE报错:
-         * Girl girl = girlRepository.findOne(id);
-         * Inferred type 'S' for type parameter 'S' is not within its bound; should extends com.example.demo.Girl
-         * 改成girlRepository.findById(id).get()
-         */
         Girl girl = girlRepository.findById(id).get();
         Integer age = girl.getAge();
         if (age < 10) {
