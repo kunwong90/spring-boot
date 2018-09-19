@@ -1,5 +1,6 @@
 package com.imooc.controller;
 
+import com.imooc.common.response.PageResponse;
 import com.imooc.domain.Girl;
 import com.imooc.domain.Result;
 import com.imooc.reposiitory.GirlRepository;
@@ -103,5 +104,16 @@ public class GirlController {
     @RequestMapping(value = "girls/getAge/{id}")
     public void getAge(@PathVariable("id") Integer id) throws Exception {
         girlService.getAge(id);
+    }
+
+    @GetMapping(value = "/jsp")
+    public String indexJsp() {
+        return "index";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/getPageList")
+    public PageResponse<Girl> getPageList(Girl girl) {
+        return girlService.getGrilPageList(girl);
     }
 }

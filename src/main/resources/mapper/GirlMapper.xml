@@ -12,4 +12,15 @@
         select id, age, cup_size
         from girl where id = #{id}
     </select>
+
+    <select id="selectCount" resultType="integer">
+        select count(*)
+        from girl
+    </select>
+
+    <select id="getGirlPageList" resultMap="girl">
+        select id, age, cup_size
+        from girl
+        limit #{page.startIndex}, #{page.pageSize}
+    </select>
 </mapper>

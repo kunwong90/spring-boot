@@ -1,0 +1,39 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: kun.wang
+  Date: 2018/9/19
+  Time: 14:39
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>DataGrid</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../css/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../css/themes/demo.css">
+    <link rel="stylesheet" type="text/css" href="../css/themes/demo.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+<table id="dg"></table>
+</body>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#dg').datagrid({
+            url:'<%=request.getContextPath()%>/dataGrid/getPageList',
+            columns:[[
+                {field:'id',title:'ID',width:100},
+                {field:'age',title:'age',width:100},
+                {field:'cupSize',title:'cupSize',width:100,align:'right'}
+            ]],
+            pagination:true
+        });
+    });
+</script>
+</html>
