@@ -1,5 +1,7 @@
 package com.imooc.domain;
 
+import com.imooc.common.requst.Page;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,7 +11,7 @@ import javax.validation.constraints.Min;
  * Created by wangkun on 2016/12/15.
  */
 @Entity
-public class Girl {
+public class Girl extends Page {
 
 	@Id
 	@GeneratedValue
