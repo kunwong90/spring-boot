@@ -53,7 +53,7 @@ public final class OkHttpClientUtil {
         File file = new File("d:/2.jpg");
         faceRequestVo.setImageBase64(FileBase64Util.encodeImageToBase64(file));
 
-        String sign = SignUtil.sign(faceRequestVo, "");
+        String sign = SignUtil.sign(faceRequestVo, "KvJClhFHCsFAetO9");
         faceRequestVo.setSign(sign);
         String params = MapConvertUtil.convertMap2Str(MapConvertUtil.convertObject2Map(faceRequestVo));
 

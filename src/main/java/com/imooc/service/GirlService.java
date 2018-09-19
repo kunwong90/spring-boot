@@ -3,6 +3,7 @@ package com.imooc.service;
 import com.imooc.domain.Girl;
 import com.imooc.enums.ResultEnum;
 import com.imooc.exception.GirlException;
+import com.imooc.mapper.GirlMapper;
 import com.imooc.reposiitory.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class GirlService {
 
     @Autowired
     private GirlRepository girlRepository;
+
+    @Autowired
+    private GirlMapper girlMapper;
 
     @Transactional(rollbackFor = Exception.class)
     public void insertTwo() {
@@ -33,7 +37,7 @@ public class GirlService {
     }
 
     public void getAge(Integer id) throws Exception {
-        Girl girl = girlRepository.findById(id).get();
+        Girl girl = girlMapper.selectById(id);
         Integer age = girl.getAge();
         if (age < 10) {
             throw new GirlException(ResultEnum.PRIMARY_SCHOOL);

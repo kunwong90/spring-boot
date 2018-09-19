@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Component
+//@Component
 public class ScheduledTasks {
 
     private Logger logger = LoggerFactory.getLogger(ScheduledTasks.class);

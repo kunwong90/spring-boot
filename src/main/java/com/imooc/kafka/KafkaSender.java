@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class KafkaSender {
     private static final Logger LOG = LoggerFactory.getLogger(KafkaSender.class);
 
