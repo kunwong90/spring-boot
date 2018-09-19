@@ -6,7 +6,11 @@ spring:
     url: jdbc:mysql://localhost:3306/dbgirl?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
     username: root
     password: P@ssw0rd
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
